@@ -2,7 +2,7 @@
 <html lang="en">
 
     <?php
-        include_once "./src/templates/page-head.php";
+        include_once "../templates/page-head.php";
     ?>
         
     </body>
