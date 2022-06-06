@@ -25,5 +25,3 @@ function createHotels() {
         array_push( $_SESSION['hotels'], $newHotel );
     }
 }
-
-createHotels();
