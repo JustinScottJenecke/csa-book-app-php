@@ -9,7 +9,8 @@
             "Live Entertainment (Musicians/Bands/Comedians)",
             "Spa and Beauty center",
             "Valet Parking and Car Wash"
-        ]
+        ],
+        "thumbnail" : "gardens.jpg"
     },
     {
         "id" : 2,
@@ -21,6 +22,7 @@
             "Games center for Kids",
             "Mini-golf course",
             "Food court with a wide variety of different restaurants"
-        ]
+        ],
+        "thumbnail" : "resort.jpg"
     }
 ]

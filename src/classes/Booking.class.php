@@ -17,7 +17,6 @@ class Booking {
         $this->cost = $cost;
     }
 
-
     /**
      * Get the value of id
      */ 

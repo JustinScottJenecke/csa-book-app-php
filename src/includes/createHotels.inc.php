@@ -1,5 +1,5 @@
 <?php
-require_once "../classes/Hotel.class.php";
+// require "../classes/Hotel.class.php";
 
 /**
  * Function that loads 
@@ -8,10 +8,10 @@ require_once "../classes/Hotel.class.php";
  * - Populates the SESSION superglobal with objects to be used later 
  */
 
-function createHotels() {
+function createHotels($url) {
 
     $_SESSION['hotels'] = [];
-    $hotelData = json_decode( file_get_contents("hotelData.json") );    
+    $hotelData = json_decode( file_get_contents($url) );    
 
     foreach ($hotelData as $data) {
 
@@ -19,9 +19,12 @@ function createHotels() {
             $data->id,
             $data->name,
             $data->rate,
-            $data->features
+            $data->features,
+            $data->thumbnail
         );
 
         array_push( $_SESSION['hotels'], $newHotel );
     }
 }
+
+
