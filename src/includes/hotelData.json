@@ -1,0 +1,26 @@
+[
+    {
+        "id" : 1,
+        "name" : "Cape Gardens Hotel",
+        "rate" : 950,
+        "features" : [
+            "Lounge and Bar",
+            "Large private garden reserved for hotel guests",
+            "Live Entertainment (Musicians/Bands/Comedians)",
+            "Spa and Beauty center",
+            "Valet Parking and Car Wash"
+        ]
+    },
+    {
+        "id" : 2,
+        "name" : "Cool Coast Hotel and Resort",
+        "rate" : 725,
+        "features" : [
+            "Swimming Pools",
+            "Walking distance from the beach",
+            "Games center for Kids",
+            "Mini-golf course",
+            "Food court with a wide variety of different restaurants"
+        ]
+    }
+]
