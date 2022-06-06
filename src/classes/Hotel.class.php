@@ -7,6 +7,10 @@ class Hotel {
     private $rate;
     private $features;
 
+    // public function __construct() {
+
+    // }
+
     public function __construct($id, $name, $rate, $features) {
 
         $this->id = $id;
