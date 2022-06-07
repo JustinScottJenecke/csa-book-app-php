@@ -45,6 +45,12 @@
                 </script>
             ";
         }
+
+        // Store SESSION Variables
+        $_SESSION['numDays'] = $numDays;
+        $_SESSION['checkin'] = $_POST['checkin'];
+        $_SESSION['checkout'] = $_POST['checkout'];
+        $_SESSION['price'] = $hotel->getRate() * $numDays;
     }
 
 ?>
@@ -100,7 +106,7 @@
                             <p>Daily Rate: R '. $hotel->getRate() .',00</p>
                             <p> <u>Total Cost:</u> <b>R '. $hotel->getRate() * $numDays .'</b> 
                             </p>
-                            <form action="./thank.php" method="post" class=" is-flex is-justify-content-center">
+                            <form action="./checkout.php" method="post" class=" is-flex is-justify-content-center">
                                 <input type="hidden" name="choice" value="'. $hotel->getName() .'">
                                 <input class="button is-black" type="submit" name="book" value="Book">
                             </form>

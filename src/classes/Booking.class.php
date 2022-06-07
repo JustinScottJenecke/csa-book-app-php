@@ -7,14 +7,16 @@ class Booking {
     private $endDate;
     private $duration;
     private $cost;
+    private $hotelName;
 
-    public function __construct($id,$startDate,$endDate,$duration,$cost) {
+    public function __construct($id,$startDate,$endDate,$duration,$cost, $hotelName) {
         
         $this->id = $id;
         $this->startDate = $startDate;
         $this->endDate = $endDate;
         $this->duration = $duration;
         $this->cost = $cost;
+        $this->hotelName = $hotelName;
     }
 
     /**
@@ -113,6 +115,26 @@ class Booking {
     public function setCost($cost)
     {
         $this->cost = $cost;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of hotelName
+     */ 
+    public function getHotelName()
+    {
+        return $this->hotelName;
+    }
+
+    /**
+     * Set the value of hotelName
+     *
+     * @return  self
+     */ 
+    public function setHotelName($hotelName)
+    {
+        $this->hotelName = $hotelName;
 
         return $this;
     }
