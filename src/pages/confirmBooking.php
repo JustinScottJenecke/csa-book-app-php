@@ -50,7 +50,6 @@
         $_SESSION['numDays'] = $numDays;
         $_SESSION['checkin'] = $_POST['checkin'];
         $_SESSION['checkout'] = $_POST['checkout'];
-        $_SESSION['price'] = $hotel->getRate() * $numDays;
     }
 
 ?>
@@ -77,6 +76,7 @@
 
         <div class=" is-flex is-flex-direction-column content-section">
             <?php foreach ($_SESSION['hotels'] as $hotel) {
+
             echo '
                 <div class="card m-5 box columns">
                     <div class="card-image column">
@@ -107,6 +107,7 @@
                             <p> <u>Total Cost:</u> <b>R '. $hotel->getRate() * $numDays .'</b> 
                             </p>
                             <form action="./checkout.php" method="post" class=" is-flex is-justify-content-center">
+                                <input type="hidden" name="rate" value="'. $hotel->getRate() .'">
                                 <input type="hidden" name="choice" value="'. $hotel->getName() .'">
                                 <input class="button is-black" type="submit" name="book" value="Book">
                             </form>
