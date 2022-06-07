@@ -62,13 +62,13 @@
         <div class=" is-flex is-flex-direction-column content-section">
             <?php foreach ($_SESSION['hotels'] as $hotel) {
             echo '
-                <div class="card m-5 box">
-                    <div class="card-image">
+                <div class="card m-5 box columns">
+                    <div class="card-image column">
                         <figure class="image is-4by3">
                         <img src="../../public/resource/'. $hotel->getThumbnail() .'" alt="Placeholder image">
                         </figure>
                     </div>
-                    <div class="card-content">
+                    <div class="card-content column">
                         <div class="media">
                         <div class="media-content">
                             <p class="title is-4 has-text-centered">'. $hotel->getName() .'</p>
