@@ -108,6 +108,7 @@
                             </p>
                             <form action="./checkout.php" method="post" class=" is-flex is-justify-content-center">
                                 <input type="hidden" name="rate" value="'. $hotel->getRate() .'">
+                                <input type="hidden" name="cost" value="'. $hotel->getRate() * $numDays .'">
                                 <input type="hidden" name="choice" value="'. $hotel->getName() .'">
                                 <input class="button is-black" type="submit" name="book" value="Book">
                             </form>

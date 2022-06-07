@@ -4,18 +4,21 @@
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
 
-    $pageTitle = "Checkout";
-    session_start();
-
-
     require "../classes/Customer.class.php";
     require "../includes/createHotels.inc.php";
     require "../classes/Hotel.class.php";
+    require "../classes/Booking.class.php";
     require "../includes/calculateDays.inc.php";
 
+    $pageTitle = "Checkout";
+    session_start();
+
+    $hotelChoice;
  
-    if (isset ($_POST['detailsSubmission'])) {
-        
+    if (isset ($_POST['book'])) {
+
+        var_dump($_POST);
+
         // Create Hotels in hotel superglobal
         try {
             createHotels("../includes/hotelData.json");
@@ -27,13 +30,31 @@
             ";
         }
 
-        // calculate duration of trip
+        // assign hotelChoice value of hotel chosen in form
+        foreach ($_SESSION['hotels'] as $hotel) {
+            if ($hotel->getName() == $_POST['choice']) {
+                
+                $hotelChoice = $hotel;
+            }
+        }
+
+        // create booking entity
         try {
-            $numDays = calculateDays( $_POST['checkin'], $_POST['checkout'] );
+            $newBooking = new Booking(
+                rand(1000,9000),
+                $_SESSION['checkin'],
+                $_SESSION['checkout'],
+                $_SESSION['numDays'],
+                $_POST['cost'],
+                $hotelChoice->getName()
+            );
+
+            var_dump($newBooking);
+
         } catch (Exception $err) {
             echo "
                 <script>
-                    console.log('Server error when calculating length of stay.. ' + $err)
+                    console.log('Server error creating booking. ' + $err)
                 </script>
             ";
         }
@@ -54,11 +75,80 @@
 
         <div class="has-background-black">
             <h1 class="is-flex p-3 mb-2 is-justify-content-center has-text-white">
-                Welcome <?php echo $_SESSION['user']->getFirstname() ?> !
+                Thank you for using our service <?php echo $_SESSION['user']->getFirstname() ?>..
             </h1>
             <h2 class="is-flex p-3 mb-2 is-justify-content-center has-text-white">
-                You are one step away from your vacation. The last thing you need to do is choose which hotel you wish stay at.
+                Please ensure that all of the following details about your trip/booking are correct.
             </h2>
+        </div>
+
+        <div class="is-flex p-3 mb-2 is-justify-content-center is-flex-direction-column">
+            <div class="columns is-justify-content-center">
+                <div class="column is-flex">
+                    <article class="message is-dark">
+                        <div class="message-header">
+                            <p>Customer Information</p>
+                            <button class="delete" aria-label="delete"></button>
+                        </div>
+                        <div class="message-body">
+                            <?php
+                            echo '
+                                <li> Customer No: #'.$_SESSION['user']->getId().'</li>
+                                <li> Name: '.$_SESSION['user']->getFirstname() .' '. $_SESSION['user']->getLastname() .'</li>
+                                <li> Email Address: '.$_SESSION['user']->getEmail().'</li>
+                            ';
+                            ?>
+                        </div>
+                    </article>
+                </div>
+                <div class="column is-flex">
+                    <article class="message is-dark">
+                        <div class="message-header">
+                            <p>Hotel Information</p>
+                            <button class="delete" aria-label="delete"></button>
+                        </div>
+                        <div class="message-body">
+                            <?php
+                            echo '
+                                <li> Hotel Id: #'.$hotelChoice->getId().'</li>
+                                <li> Hotel: '.$hotelChoice->getName().'</li>
+                                <li> Daily Rate: R '.$hotelChoice->getRate().',00 </li>
+                            ';
+                            ?>
+                        </div>
+                    </article>
+                </div>
+                <div class="column is-flex">
+                    <article class="message is-dark">
+                        <div class="message-header">
+                            <p>Booking Information</p>
+                            <button class="delete" aria-label="delete"></button>
+                        </div>
+                        <div class="message-body">
+                        <?php
+                            echo '
+                                <li> Booking No: #'.$newBooking->getId().'</li>
+                                <li> Duration of stay: '.$newBooking->getDuration().'</li>
+                                <ul>
+                                    <li> Start Date: '.$newBooking->getStartDate().'</li>
+                                    <li> End Date: '.$newBooking->getEndDate().'</li>
+                                </ul>
+                                <li> Total: R '.$newBooking->getCost().',00 </li>
+                            ';
+                            ?>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </div>
+
+        <div class="checkout">
+            <h2>
+                Your booking details will be sent to use via Email
+            </h2>
+            <button>
+                Confirm Booking
+            </button>
         </div>
 
     </body>
