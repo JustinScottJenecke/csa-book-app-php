@@ -17,8 +17,6 @@
  
     if (isset ($_POST['book'])) {
 
-        var_dump($_POST);
-
         // Create Hotels in hotel superglobal
         try {
             createHotels("../includes/hotelData.json");
@@ -48,8 +46,6 @@
                 $_POST['cost'],
                 $hotelChoice->getName()
             );
-
-            var_dump($newBooking);
 
         } catch (Exception $err) {
             echo "
@@ -129,10 +125,10 @@
                             echo '
                                 <li> Booking No: #'.$newBooking->getId().'</li>
                                 <li> Duration of stay: '.$newBooking->getDuration().'</li>
-                                <ul>
-                                    <li> Start Date: '.$newBooking->getStartDate().'</li>
-                                    <li> End Date: '.$newBooking->getEndDate().'</li>
-                                </ul>
+
+                                <p class="ml-5">- Start Date: '.$newBooking->getStartDate().'</p>
+                                <p class="ml-5">- End Date: '.$newBooking->getEndDate().'</p>
+
                                 <li> Total: R '.$newBooking->getCost().',00 </li>
                             ';
                             ?>
