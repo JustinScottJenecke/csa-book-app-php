@@ -7,14 +7,13 @@
     $pageTitle = "Choose Hotel";
     session_start();
 
+
     require "../classes/Customer.class.php";
     require "../includes/createHotels.inc.php";
     require "../classes/Hotel.class.php";
+    require "../includes/calculateDays.inc.php";
 
-    $pic = file_get_contents("../../public/resource/a.txt");
-
-    var_dump( $pic );
-
+ 
     if (isset ($_POST['detailsSubmission'])) {
         
         // Create instance of Customer in user
@@ -32,6 +31,17 @@
             echo "
                 <script>
                     console.log('Server error in loading hotels.. ' + $err)
+                </script>
+            ";
+        }
+
+        // calculate duration of trip
+        try {
+            $numDays = calculateDays( $_POST['checkin'], $_POST['checkout'] );
+        } catch (Exception $err) {
+            echo "
+                <script>
+                    console.log('Server error when calculating length of stay.. ' + $err)
                 </script>
             ";
         }
@@ -76,7 +86,7 @@
                         </div>
 
                         <div class="content">
-                            <p>Number of days: 3</p>
+                            <p>Number of days: '.$numDays.'</p>
                             <p>
                                 Hotel Features:
                                 <ul>
@@ -88,7 +98,7 @@
                                 </ul>
                             </p>
                             <p>Daily Rate: R '. $hotel->getRate() .',00</p>
-                            <p> <u>Total Cost:</u> <b>R amt</b> 
+                            <p> <u>Total Cost:</u> <b>R '. $hotel->getRate() * $numDays .'</b> 
                             </p>
                             <form action="./thank.php" method="post" class=" is-flex is-justify-content-center">
                                 <input type="hidden" name="choice" value="'. $hotel->getName() .'">
