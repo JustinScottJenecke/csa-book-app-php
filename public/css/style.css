@@ -13,6 +13,14 @@ h1 { font-size: 2.25rem; }
 h2 { font-size: 1.55rem; }
 h3 { font-size: 1.25rem; }
 
+@media only screen and (min-width: 700px) {
+
+    h1 { font-size: 3rem; }
+    h2 { font-size: 2.25rem; }
+    h3 { font-size: 1.5rem; }
+    
+}
+
 form input {
     border-radius: 6px;
 }
@@ -26,11 +34,17 @@ form input {
     background-size:cover;
     background-repeat: no-repeat;
 }
+@media only screen and (min-width: 700px) {
+    .hero {
+        height: 100vh;
+    }
+}
 
 .hero-text {
     background-color: rgba(0, 0, 0, 0.5);
     margin: 0 15vw;
     text-align: center;
+    padding: 1rem;
 }
 
 /*--------------------------Landing Form----------------------------------*/
@@ -38,6 +52,18 @@ form input {
 .date-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+}
+
+@media only screen and (min-width: 600px) {
+    .booking-form {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important;      
+
+    }
+    .booking-form div {
+        height: 100%;
+
+    }
 }
 
 /*--------------------------Confirm Page----------------------------------*/

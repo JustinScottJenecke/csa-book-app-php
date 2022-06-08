@@ -39,32 +39,34 @@
 
         <form class="box is-flex is-flex-direction-column" action="../src/pages/confirmBooking.php" method="post">
 
-            <div class="box is-flex is-flex-direction-column">
-                <label class="has-background-black has-text-white p-2 my-1">
-                    <h3>
-                        Customer Details
-                    </h3>
-                </label>
-                <input class="p-2 my-1" type="text" name="firstname" required placeholder="Name..">
-                <input class="p-2 my-1" type="text" name="lastname" required placeholder="Surname..">
-                <input class="p-2 my-1" type="email" name="email" required placeholder="Email Address..">
-            </div>
+            <div class="booking-form">
+                <div class="box is-flex is-flex-direction-column">
+                    <label class="has-background-black has-text-white p-2 my-1">
+                        <h3>
+                            Customer Details
+                        </h3>
+                    </label>
+                    <input class="p-2 my-1" type="text" name="firstname" required placeholder="Name..">
+                    <input class="p-2 my-1" type="text" name="lastname" required placeholder="Surname..">
+                    <input class="p-2 my-1" type="email" name="email" required placeholder="Email Address..">
+                </div>
 
-            <div class="box is-flex is-flex-direction-column">
-                <label class="has-background-black has-text-white p-2 my-1">
-                    <h3>
-                        Booking Details
-                    </h3>
-                </label>
-                <div class="date-grid">
-                    <span class="p-2 my-1">Check-In Date</span>
-                    <input class="p-2 my-1" type="date" name="checkin" required id="">
-                    <span class="p-2 my-1">Check-Out Date</span>
-                    <input class="p-2 my-1" type="date" name="checkout" required id="">
+                <div class="box is-flex is-flex-direction-column">
+                    <label class="has-background-black has-text-white p-2 my-1">
+                        <h3>
+                            Booking Details
+                        </h3>
+                    </label>
+                    <div class="date-grid">
+                        <span class="p-2 my-1">Check-In Date</span>
+                        <input class="p-2 my-1" type="date" name="checkin" required id="">
+                        <span class="p-2 my-1">Check-Out Date</span>
+                        <input class="p-2 my-1" type="date" name="checkout" required id="">
+                    </div>
                 </div>
             </div>
 
-            <input class="button is-black mx-6" type="submit" name="detailsSubmission" value="Submit">
+            <input class="button is-black mt-4 mx-6" type="submit" name="detailsSubmission" value="Submit">
 
         </form>
 
